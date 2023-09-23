@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.platform</groupId>
-	<artifactId>novel-backend-service</artifactId>
-	<name>novel</name>
-	<description>Novel Project</description>
+	<artifactId>authentication-backend-service</artifactId>
+	<name>authentication</name>
+	<description>Authentication Service</description>
 	<packaging>jar</packaging>
 	<version>1.0</version>
 	<properties>
