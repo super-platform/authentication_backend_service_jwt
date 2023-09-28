@@ -9,25 +9,26 @@ spring:
   main:
     allow-bean-definition-overriding: true
   jpa:
-    open-in-view: false
-  kafka:
-    producer:
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      bootstrap-servers:
-        - localhost:9092
-    consumer:
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      auto-offset-reset: earliest
-      bootstrap-servers:
-        - localhost:9092
-    listener:
-      missing-topics-fatal: false
-  data:
-    mongodb:
-      inquiry-db:
-        uri: mongodb://mongo:mongo123@localhost:27017/inquiryDB?retryWrites=true&w=majority&directConnection=true&authMechanism=SCRAM-SHA-1&authSource=admin
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        hbm2ddl:
+          auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5433/auth
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-test-query: SELECT 1
+      minimum-idle: 5
+      maximum-pool-size: 50
+      pool-name: postgresDBPool1
+      auto-commit: false
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
 ###swagger
 application:
   description: Authentication
@@ -39,23 +40,3 @@ rest:
   template:
     read: 30000
     connect: 30000
-
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          keycloak:
-#            client-id: clientId
-#            client-secret: uuid
-#            scope: openid
-#            authorization-grant-type: authorization_code
-#        provider:
-#          keycloak:
-#            issuer-uri: https://kecloak.com
-#            user-name-attribute: preferred_username
-#      resourceserver:
-#        jwt:
-#          issuer-uri: https://kecloak.com
-
-keycloak:
-  enabled: false
