@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
     @PostMapping("/signup")
-    public ResponseEntity<JwtAuthenticationResponse> signup(@RequestBody SignUpRequest signUpRequest) {
-        return ResponseEntity.ok(authenticationService.signup(signUpRequest));
+    public JwtAuthenticationResponse signup(@RequestBody SignUpRequest signUpRequest) {
+        return authenticationService.signup(signUpRequest);
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SigninRequest signinRequest) {
-        return ResponseEntity.ok(authenticationService.signin(signinRequest));
+    public JwtAuthenticationResponse signin(@RequestBody SigninRequest signinRequest) {
+        return authenticationService.signin(signinRequest);
     }
 }
